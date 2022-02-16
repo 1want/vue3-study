@@ -1,0 +1,76 @@
+@font-face {
+  font-family: 'iconfont'; /* Project id  */
+  src: url('../other/iconfont.ttf?t=1630474683336') format('truetype');
+}
+
+.iconfont {
+  font-family: 'iconfont' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-bofang:before {
+  content: '\e62c';
+}
+
+.icon-shangyishoushangyige:before {
+  content: '\e78a';
+}
+
+.icon-xiayigexiayishou:before {
+  content: '\e7a5';
+}
+
+.icon-arrowRight-copy:before {
+  content: '\e677';
+}
+
+.icon-sousuo:before {
+  content: '\e647';
+}
+
+.icon-jingyin:before {
+  content: '\e61e';
+}
+
+.icon-shengyin:before {
+  content: '\e62d';
+}
+
+.icon-zanting:before {
+  content: '\e619';
+}
+
+.icon-liebiaoshunxu:before {
+  content: '\e802';
+}
+
+.icon-pifu:before {
+  content: '\e62b';
+}
+
+.icon-zanting1:before {
+  content: '\e604';
+}
+
+.icon-zanting2:before {
+  content: '\e616';
+}
+
+.icon-guanbi:before {
+  content: '\e6c9';
+}
+
+.icon-hanhan-01-01:before {
+  content: '\e6ae';
+}
+
+.icon-hanhan-01-011:before {
+  content: '\e6b0';
+}
+
+.icon-GitHub:before {
+  content: '\e8c6';
+}

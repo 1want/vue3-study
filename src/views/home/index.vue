@@ -8,4 +8,4 @@ import Header from '@/components/header/index.vue'
 import MainPage from '@/components/main/index.vue'
 </script>
 
-<style></style>
+<style lang="less" scoped></style>

@@ -1,7 +1,13 @@
 <template>
-  header
+  <div class="wrapper">
+    header
+  </div>
 </template>
 
 <script setup></script>
 
-<style></style>
+<style lang="less" scoped>
+.wrapper {
+  height: 70px;
+}
+</style>
