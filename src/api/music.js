@@ -18,3 +18,13 @@ export function getUrl(id) {
     }
   })
 }
+
+// 获取歌曲详情
+export function getMusicInfo(ids) {
+  return request({
+    url: 'song/detail',
+    params: {
+      ids
+    }
+  })
+}

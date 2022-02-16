@@ -1,11 +1,12 @@
 import { ref, reactive, toRefs } from 'vue'
-import { getUrl } from '@/api'
+import { getUrl, getMusicInfo } from '@/api'
 
 const state = reactive({
   playState: false,
   lyric: [],
   url: '',
-  checkPlayer: true
+  PlayMode: 'normal',
+  musicInfo: []
 })
 
 function play() {
@@ -16,6 +17,10 @@ function play() {
   const playMusic = (id, index) => {
     getUrl(id).then(res => {
       state.url = res.data[0].url
+    })
+    getMusicInfo(id).then(res => {
+      state.musicInfo = res.songs[0]
+      console.log(state.musicInfo)
     })
   }
 
