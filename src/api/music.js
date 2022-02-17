@@ -28,3 +28,16 @@ export function getMusicInfo(ids) {
     }
   })
 }
+
+// 根据关键字搜索音乐
+export function searchByKeyword(keywords, offset = 0, type = 1, limit = 15) {
+  return request({
+    url: 'cloudsearch',
+    params: {
+      keywords,
+      offset,
+      type,
+      limit
+    }
+  })
+}

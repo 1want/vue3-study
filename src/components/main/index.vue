@@ -2,10 +2,14 @@
   <div class="wrapper">
     <div class="content" v-for="(item, index) of musicList" :key="item.id">
       <span class="song-name txt-over">{{ item.name }}</span>
-      <span class="singer">{{ item.song.artists[0].name }}</span>
+      <span class="singer">
+        {{ item.song?.artists[0].name || item.ar[0].name }}
+      </span>
       <span
         class="icon"
-        :class="playState ? 'icon-zanting1' : 'icon-bofang'"
+        :class="
+          playCurrent === index && playState ? 'icon-zanting1' : 'icon-bofang'
+        "
         @click="playMusic(item.id, index)"
       ></span>
     </div>
@@ -16,6 +20,7 @@
 import { getMusicList } from '@/api/index'
 import { onMounted, toRefs, reactive } from 'vue'
 import play from '@/hooks/play'
+import bus from '@/utils/bus'
 
 const { playState, playCurrent, playMusic } = play()
 
@@ -27,6 +32,10 @@ onMounted(() => {
   getMusicList().then(res => {
     state.musicList = res.result
   })
+})
+
+bus.on('searchResult', result => {
+  state.musicList = result
 })
 
 const { musicList } = toRefs(state)

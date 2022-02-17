@@ -1,5 +1,5 @@
 <template>
-  <div class="normal-play">
+  <div class="normal-play" @click="changePlayMode('detail')">
     <div class="music-info">
       <img class="music-img" :src="musicInfo?.al?.picUrl" alt="" />
       <span class="singer">{{ musicInfo.name }}</span>
@@ -10,7 +10,7 @@
       <span class="icon-liebiaoshunxu"></span>
       <span class="icon-shangyishoushangyige"></span>
       <span
-        @click="add"
+        @click.stop="changePlayState(!playState)"
         :class="playState ? 'icon-zanting1' : 'icon-bofang'"
         style="font-size: 40px"
       ></span>
@@ -22,7 +22,7 @@
 
 <script setup>
 import play from '@/hooks/play'
-const { url, playState, changePlayState, musicInfo } = play()
+const { playState, changePlayState, musicInfo, changePlayMode } = play()
 </script>
 
 <style lang="less" scoped>

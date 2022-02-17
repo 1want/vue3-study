@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
-    <normal-player v-if="PlayMode === 'normal'"></normal-player>
-    <detail-player v-else></detail-player>
+    <normal-player v-if="playMode === 'normal'"></normal-player>
+    <detail-player v-if="playMode !== 'normal'"></detail-player>
     <audio :src="url" controls autoplay ref="video"></audio>
   </div>
 </template>
@@ -14,7 +14,7 @@ import { watch, ref } from 'vue'
 
 const video = ref()
 
-const { PlayMode, url, playState } = play()
+const { playMode, url, playState } = play()
 
 watch(playState, state => {
   if (state === false) {

@@ -31,7 +31,6 @@ import play from '@/components/play/index.vue'
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: 1px solid #000;
-  background: url('@/assets/images/defaultBg.png');
+  // background: url('@/assets/images/defaultBg.png');
 }
 </style>
