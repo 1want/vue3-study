@@ -1,7 +1,5 @@
 <template>
-  <div class="wrapper">
-    header
-  </div>
+  <div class="wrapper">header</div>
 </template>
 
 <script setup></script>

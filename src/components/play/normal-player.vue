@@ -7,14 +7,15 @@
     </div>
 
     <div class="control">
-      <span class="iconfont icon-shangyishoushangyige"></span>
+      <span class="icon-liebiaoshunxu"></span>
+      <span class="icon-shangyishoushangyige"></span>
       <span
-        @click="changePlayState"
-        class="iconfont"
+        @click="add"
         :class="playState ? 'icon-zanting1' : 'icon-bofang'"
         style="font-size: 40px"
       ></span>
-      <span class="iconfont icon-xiayigexiayishou"></span>
+      <span class="icon-xiayigexiayishou"></span>
+      <span class="icon-shengyin"></span>
     </div>
   </div>
 </template>
@@ -47,12 +48,10 @@ const { url, playState, changePlayState, musicInfo } = play()
   }
 
   .control {
-    margin: 0 50px;
     display: flex;
     align-items: center;
-    padding-left: 50px;
     justify-content: center;
-    .iconfont {
+    span {
       cursor: pointer;
       font-size: 24px;
       color: rgba(224, 220, 220, 0.911);

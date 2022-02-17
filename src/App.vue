@@ -13,7 +13,16 @@
 import play from '@/components/play/index.vue'
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
+::-webkit-scrollbar {
+  width: 0;
+}
+[class*='icon-'] {
+  font-family: 'icon' !important;
+  font-style: normal;
+  color: #fff;
+}
+
 #app {
   overflow: hidden;
   width: 900px;

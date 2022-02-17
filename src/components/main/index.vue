@@ -4,7 +4,7 @@
       <span class="song-name txt-over">{{ item.name }}</span>
       <span class="singer">{{ item.song.artists[0].name }}</span>
       <span
-        class="iconfont"
+        class="icon"
         :class="playState ? 'icon-zanting1' : 'icon-bofang'"
         @click="playMusic(item.id, index)"
       ></span>
@@ -38,7 +38,7 @@ const { musicList } = toRefs(state)
   overflow: scroll;
   .content {
     display: flex;
-    padding: 20px 0;
+    padding: 15px 0;
     color: #fff;
     .song-name {
       width: 240px;
@@ -47,10 +47,12 @@ const { musicList } = toRefs(state)
     .singer {
       flex: 1;
       padding: 0 50px;
+      cursor: pointer;
     }
-    .iconfont {
+    .icon {
       font-size: 26px;
       width: 200px;
+      cursor: pointer;
     }
     &:hover {
       background: rgba(163, 161, 161, 0.13);
