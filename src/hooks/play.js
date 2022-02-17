@@ -1,5 +1,6 @@
-import { ref, reactive, toRefs } from 'vue'
-import { getUrl, getMusicInfo } from '@/api'
+import { reactive, toRefs } from 'vue'
+import { getUrl, getMusicInfo, getLyric } from '@/api'
+import analyzeLyrics from '@/utils/lyrics'
 
 const state = reactive({
   playState: false,
@@ -23,12 +24,16 @@ function play() {
     // 播放歌曲时：
     // 1.获取歌曲url
     // 2.获取歌曲详细信息
-    // 3.改变播放状态，并添加当前播放索引
+    // 3.获取歌词
+    // 4.改变播放状态，并添加当前播放索引
     getUrl(id).then(res => {
       state.url = res.data[0].url
     })
     getMusicInfo(id).then(res => {
       state.musicInfo = res.songs[0]
+    })
+    getLyric(id).then(res => {
+      state.lyric = analyzeLyrics(res.lrc.lyric)
     })
 
     // 当点击的歌曲是第一次点击时，只需让它的播放状态为true
