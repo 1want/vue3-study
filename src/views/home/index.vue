@@ -1,24 +1,15 @@
 <template>
-  <img v-if="imgUrl" class="default-bg" :src="imgUrl" alt="" />
-  <img v-else class="default-bg" src="@/assets/images/defaultBg.png" alt="" />
-  <Header v-model:imgUrl="imgUrl"></Header>
-  <main-page></main-page>
+  <button @click="ts.add">add</button>
+  <router-view></router-view>
 </template>
 
 <script setup>
-import Header from '@/components/header/index.vue'
-import MainPage from '@/components/main/index.vue'
-import { ref } from 'vue'
+import a from '@/hooks/play'
 
-const imgUrl = ref('')
+import { toRefs } from 'vue'
+
+const { ts } = toRefs(a.state)
+console.log(ts)
 </script>
 
-<style lang="less" scoped>
-.default-bg {
-  position: absolute;
-  z-index: -1;
-  width: 100%;
-  height: 600px;
-  object-fit: cover;
-}
-</style>
+<style></style>

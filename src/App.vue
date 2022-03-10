@@ -1,11 +1,13 @@
 <template>
   <div id="app">
+    <router-link to="/singer">to singer</router-link>
+    <router-link to="/">to home</router-link>
     <router-view v-slot="{ Component }">
-      <keep-alive>
-        <component :is="Component" />
-      </keep-alive>
+      <!-- <keep-alive> -->
+      <component :is="Component" />
+      <!-- </keep-alive> -->
     </router-view>
-    <play />
+    <!-- <play /> -->
   </div>
 </template>
 
@@ -31,6 +33,5 @@ import play from '@/components/play/index.vue'
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  // background: url('@/assets/images/defaultBg.png');
 }
 </style>
