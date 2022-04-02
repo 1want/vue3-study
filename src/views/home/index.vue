@@ -1,15 +1,18 @@
 <template>
-  <button @click="ts.add">add</button>
-  <router-view></router-view>
+  <div class="wrapper" @click="open">wta</div>
 </template>
 
 <script setup>
-import a from '@/hooks/play'
+import { message } from '@/plugin'
+import { onMounted } from 'vue'
 
-import { toRefs } from 'vue'
-
-const { ts } = toRefs(a.state)
-console.log(ts)
+const open = () => {
+  message({
+    msg: 'hello msg',
+    time: 1500,
+    type: 'primary'
+  })
+}
 </script>
 
 <style></style>

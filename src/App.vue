@@ -1,19 +1,12 @@
 <template>
   <div id="app">
-    <router-link to="/singer">to singer</router-link>
-    <router-link to="/">to home</router-link>
     <router-view v-slot="{ Component }">
-      <!-- <keep-alive> -->
       <component :is="Component" />
-      <!-- </keep-alive> -->
     </router-view>
-    <!-- <play /> -->
   </div>
 </template>
 
-<script setup>
-import play from '@/components/play/index.vue'
-</script>
+<script setup></script>
 
 <style lang="less">
 ::-webkit-scrollbar {

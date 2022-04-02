@@ -1,19 +1,21 @@
 <template>
-  singer
-  <router-view></router-view>
+  singer --
+  <span>{{ list }}</span>
 </template>
 
 <script setup>
-import { reactive } from '@vue/reactivity'
-import { useRouter, onBeforeRouteUpdate } from 'vue-router'
-const props = defineProps({
-  name: {
-    default: 'walt'
-  }
+import { reactive, toRefs } from '@vue/reactivity'
+import bus from '@/utils/bus'
+const state = reactive({
+  list: {}
 })
-const router = useRouter()
-// console.log(router)
-console.log('singer')
+
+const { list } = toRefs(state)
+
+bus.on('add', e => {
+  state.list = e
+  console.log(e)
+})
 </script>
 
 <style></style>
