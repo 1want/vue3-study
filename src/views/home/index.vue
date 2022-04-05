@@ -1,18 +1,24 @@
 <template>
-  <div class="wrapper" @click="open">wta</div>
+  <img v-if="imgUrl" class="default-bg" :src="imgUrl" alt="" />
+  <img v-else class="default-bg" src="@/assets/images/defaultBg.png" alt="" />
+  <Header v-model:imgUrl="imgUrl"></Header>
+  <main-page></main-page>
 </template>
 
 <script setup>
-import { message } from '@/plugin'
-import { onMounted } from 'vue'
+import Header from '@/components/header/index.vue'
+import MainPage from '@/components/main/index.vue'
+import { ref } from 'vue'
 
-const open = () => {
-  message({
-    msg: 'hello msg',
-    time: 1500,
-    type: 'primary'
-  })
-}
+const imgUrl = ref('')
 </script>
 
-<style></style>
+<style lang="less" scoped>
+.default-bg {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+}
+</style>

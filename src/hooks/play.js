@@ -8,7 +8,9 @@ const state = reactive({
   url: '',
   playMode: 'normal',
   musicInfo: [],
-  playCurrent: 0
+  playCurrent: 0,
+  playTime: 0,
+  playIndex: 0
 })
 
 function play() {
@@ -18,6 +20,10 @@ function play() {
 
   const changePlayMode = mode => {
     state.playMode = mode
+  }
+
+  const changePlayIndex = index => {
+    state.playIndex = index
   }
 
   const playMusic = (id, index) => {
@@ -49,6 +55,7 @@ function play() {
   return {
     changePlayState,
     changePlayMode,
+    changePlayIndex,
     playMusic,
     ...toRefs(state)
   }

@@ -1,12 +1,22 @@
 <template>
   <div id="app">
-    <router-view v-slot="{ Component }">
-      <component :is="Component" />
-    </router-view>
+    <div class="contents">
+      <router-view v-slot="{ Component }">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
+      <play />
+    </div>
+
+    <full-lyric />
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import play from '@/components/play/index.vue'
+import fullLyric from '@/components/fullLyric/index.vue'
+</script>
 
 <style lang="less">
 ::-webkit-scrollbar {
@@ -18,7 +28,7 @@
   color: #fff;
 }
 
-#app {
+.contents {
   overflow: hidden;
   width: 900px;
   height: 600px;
