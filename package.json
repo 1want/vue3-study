@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.26.0",
+    "better-scroll": "^2.4.2",
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
     "mitt": "^3.0.0",

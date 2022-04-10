@@ -1,6 +1,9 @@
 <template>
   <div class="detail-play">
-    <span class="icon-arrowRight-copy" @click="changePlayMode('normal')"></span>
+    <span
+      class="icon-arrowRight-copy"
+      @click="changePlayMode('normalPlayer')"
+    ></span>
     <img class="hover-img" :src="musicInfo.al.picUrl" alt="" />
 
     <main>

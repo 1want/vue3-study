@@ -6,11 +6,12 @@ const state = reactive({
   playState: false,
   lyric: [],
   url: '',
-  playMode: 'normal',
+  playMode: 'none',
   musicInfo: [],
   playCurrent: 0,
   playTime: 0,
-  playIndex: 0
+  playIndex: 0,
+  currentLyric: ''
 })
 
 function play() {
@@ -22,8 +23,13 @@ function play() {
     state.playMode = mode
   }
 
-  const changePlayIndex = index => {
+  const changePlayTime = time => {
+    state.playTime = time
+  }
+
+  const changePlayIndex = (index, lyric) => {
     state.playIndex = index
+    state.currentLyric = lyric
   }
 
   const playMusic = (id, index) => {
@@ -41,6 +47,7 @@ function play() {
     getLyric(id).then(res => {
       state.lyric = analyzeLyrics(res.lrc.lyric)
     })
+    changePlayMode('normalPlayer')
 
     // 当点击的歌曲是第一次点击时，只需让它的播放状态为true
     // 当对同一首歌曲进行点击时只需改变它的播放状态，传递一个反相值即可
@@ -55,6 +62,7 @@ function play() {
   return {
     changePlayState,
     changePlayMode,
+    changePlayTime,
     changePlayIndex,
     playMusic,
     ...toRefs(state)

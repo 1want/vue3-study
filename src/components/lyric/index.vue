@@ -3,27 +3,37 @@
     <p class="songs">{{ musicInfo.name }}</p>
     <p class="singer">{{ musicInfo.ar[0].name }}</p>
   </div>
-  <div class="lyric">
-    <ul ref="ul">
-      <li v-for="(item, index) of lyric">
-        {{ item.txt }}
-      </li>
-    </ul>
-  </div>
+  <Scroll :height="400" :lyricIndex="playIndex" :lines="lyric.length">
+    <div class="lyric">
+      <ul>
+        <li
+          v-for="(item, index) of lyric"
+          :class="playIndex === index && 'current-lyr'"
+          :style="{ animationDuration: duration }"
+        >
+          {{ item.txt }}
+        </li>
+      </ul>
+    </div>
+  </Scroll>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
+import Scroll from '../scroll/index.vue'
 import play from '@/hooks/play'
-const { lyric, musicInfo } = play()
 
-const ul = ref()
+const { lyric, playIndex, musicInfo } = play()
+const duration = ref()
 
-onMounted(() => {
-  setInterval(() => {
-    ul.value.style.marginTop = '-10px'
-  }, 1000)
-})
+watch(
+  () => playIndex.value,
+  newV => {
+    duration.value = 0
+    const needTime = lyric.value[newV].needTime
+    duration.value = needTime * 1000 + 'ms'
+  }
+)
 </script>
 
 <style lang="less" scoped>
@@ -40,7 +50,6 @@ onMounted(() => {
     color: rgb(221, 219, 219);
   }
 }
-
 ::-webkit-scrollbar {
   width: 0;
 }
@@ -48,7 +57,6 @@ onMounted(() => {
   color: rgba(245, 244, 244, 0.794);
   text-align: center;
   margin-top: 15px;
-  overflow: scroll;
   ul {
     width: 480px;
     display: flex;
@@ -68,6 +76,18 @@ onMounted(() => {
       -webkit-background-clip: text;
       background-size: 0 100%;
     }
+  }
+}
+.current-lyr {
+  animation: scan linear;
+  background-size: 100% 100%;
+}
+@keyframes scan {
+  from {
+    background-size: 0% 100%;
+  }
+  to {
+    background-size: 100% 100%;
   }
 }
 </style>

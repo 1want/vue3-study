@@ -6,7 +6,6 @@ export default function drag(node) {
 
   //监听鼠标按下事件
   document.addEventListener('mousedown', function(e) {
-    console.log('ok')
     if (e.target == moveElem) {
       dragging = true //激活拖拽状态
       var moveElemRect = moveElem.getBoundingClientRect()

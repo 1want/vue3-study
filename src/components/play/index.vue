@@ -1,9 +1,13 @@
 <template>
-  <div class="wrapper">
-    <normal-player v-if="playMode === 'normal'"></normal-player>
-    <detail-player v-if="playMode !== 'normal'"></detail-player>
-    <audio :src="url" @timeupdate="timeupdate" autoplay ref="video"></audio>
-  </div>
+  <transition name="normal">
+    <normal-player v-if="playMode === 'normalPlayer'"></normal-player>
+  </transition>
+
+  <transition name="detail">
+    <detail-player v-if="playMode === 'detailPlayer'"></detail-player>
+  </transition>
+
+  <audio :src="url" @timeupdate="timeupdate" autoplay ref="video"></audio>
 </template>
 
 <script setup>
@@ -14,17 +18,23 @@ import { watch, ref } from 'vue'
 
 const video = ref()
 
-const { playMode, url, playState, changePlayIndex, lyric, playIndex } = play()
+const {
+  playMode,
+  url,
+  playState,
+  changePlayIndex,
+  lyric,
+  playIndex,
+  changePlayTime
+} = play()
 
 const timeupdate = time => {
   let currentTime = Math.ceil(time.target.currentTime)
-  let i
+  let runTime = time.target.currentTime / time.target.duration
+  changePlayTime(runTime)
   lyric.value.find((item, index) => {
     if (item.time === currentTime) {
-      i = index
-    }
-    if (i && i != playIndex.value) {
-      changePlayIndex(i)
+      changePlayIndex(index, lyric.value[index]?.txt)
     }
   })
 }
@@ -34,15 +44,35 @@ watch(playState, state => {
     video.value.pause()
   } else {
     video.value.play()
-    console.log(video.value.currentTime)
   }
 })
 </script>
 
 <style lang="less" scoped>
-.wrapper {
-  audio {
-    display: none;
+.detail-enter-active {
+  animation: enter 1s ease-out;
+}
+.detail-leave-to {
+  transform: translateY(600px);
+  transition: 1.5s;
+}
+.normal-enter-active {
+  animation: normalEnter 1s linear;
+}
+@keyframes normalEnter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes enter {
+  from {
+    transform: translateY(600px);
+  }
+  to {
+    transform: translateY(0px);
   }
 }
 </style>
