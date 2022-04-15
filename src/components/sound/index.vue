@@ -53,7 +53,7 @@ input[type='range']::-webkit-slider-thumb {
 
 input[type='range']::-webkit-slider-runnable-track {
   height: 5px;
-  margin-top: -60px;
+  margin-top: -3px;
   position: relative;
   border-radius: 30px;
   background: rgba(216, 213, 213, 0.438);

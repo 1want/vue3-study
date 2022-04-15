@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vite --open --port=3232 ",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest"
   },
   "dependencies": {
     "axios": "^0.26.0",
@@ -13,13 +14,17 @@
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
     "mitt": "^3.0.0",
+    "pinia": "^2.0.13",
     "vue": "^3.2.25",
     "vue-router": "^4.0.12"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.2.0",
+    "@vue/test-utils": "^2.0.0-rc.20",
+    "happy-dom": "^2.55.0",
     "mockjs": "^1.1.0",
     "vite": "^2.8.0",
-    "vite-plugin-mock": "^2.9.6"
+    "vite-plugin-mock": "^2.9.6",
+    "vitest": "^0.9.3"
   }
 }

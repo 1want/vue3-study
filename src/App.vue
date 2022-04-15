@@ -16,6 +16,9 @@
 <script setup>
 import play from '@/components/play/index.vue'
 import fullLyric from '@/components/fullLyric/index.vue'
+import { useStore } from '@/store'
+
+const state = useStore()
 </script>
 
 <style lang="less">

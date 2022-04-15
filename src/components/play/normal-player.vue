@@ -1,31 +1,41 @@
 <template>
-  <div class="normal-play" @click="closeSound">
-    <div class="progress-bar">
-      <div class="bar" :style="`width : ${playTime * 100}% `"></div>
+  <div class="custom-play" @click="closeSound">
+    <div class="progress-bar" @click="changeTime">
+      <div
+        class="bar"
+        :style="`width : ${
+          playTime * 100
+        }% ;background:rgba(181, 198, 223, 0.76) ;height:4px;`"
+      ></div>
     </div>
-
-    <div class="music-info" @click="changePlayMode('detailPlayer')">
-      <img class="music-img" :src="musicInfo?.al?.picUrl" alt="" />
-      <div class="info">
-        <notice-bar ref="notice">
-          <span class="singer">{{ musicInfo.name }}</span>
-          <span class="song-name">{{ musicInfo?.al?.tns[0] }}</span>
-        </notice-bar>
+    <div class="music-info">
+      <div class="music-info-content">
+        <img
+          class="img"
+          :src="musicInfo.al?.picUrl"
+          alt=""
+          @click="changePlayMode('detailPlayer')"
+        />
+        <div class="info">
+          <notice-bar ref="notice">
+            <span class="songs">{{ musicInfo.name }}</span>
+            <span class="singer">{{ musicInfo?.al?.tns[0] }}</span>
+          </notice-bar>
+        </div>
       </div>
+      <div class="control">
+        <span class="icon-liebiaoshunxu"></span>
+        <span class="icon-shangyishoushangyige"></span>
+        <span
+          @click.stop="changePlayState(!playState)"
+          :class="playState ? 'icon-zanting1' : 'icon-bofang'"
+          style="font-size: 40px"
+        ></span>
+        <span class="icon-xiayigexiayishou"></span>
+        <span class="icon-shengyin" @click.stop="isShowSound"></span>
+      </div>
+      <sound class="sound" v-show="showSound"></sound>
     </div>
-
-    <div class="control">
-      <span class="icon-liebiaoshunxu"></span>
-      <span class="icon-shangyishoushangyige"></span>
-      <span
-        @click.stop="changePlayState(!playState)"
-        :class="playState ? 'icon-zanting1' : 'icon-bofang'"
-        style="font-size: 40px"
-      ></span>
-      <span class="icon-xiayigexiayishou"></span>
-      <span class="icon-shengyin" @click.stop="isShowSound"></span>
-    </div>
-    <sound class="sound" v-show="showSound"></sound>
   </div>
 </template>
 
@@ -63,7 +73,7 @@ const { showSound } = toRefs(state)
 </script>
 
 <style lang="less" scoped>
-.normal-play {
+.custom-play {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -71,32 +81,31 @@ const { showSound } = toRefs(state)
   flex-direction: column;
   align-items: center;
   height: 90px;
-  // width: 100%;
-  line-height: 80px;
-  // position: fixed;
-  // bottom: 0;
   .progress-bar {
     height: 4px;
-    width: 100vw;
+    width: 100%;
     background: rgba(211, 209, 209, 0.301);
     .bar {
       width: 1px;
-      height: 4px;
-      background: rgba(181, 198, 223, 0.76);
     }
   }
   .music-info {
-    color: #fff;
+    margin-top: 35px;
+    display: flex;
+    width: 100%;
+  }
+  .music-info-content {
     display: flex;
     align-items: center;
     position: absolute;
-    width: 300px;
-    left: 50px;
-    .music-img {
-      width: 50px;
-      height: 50px;
+    padding-left: 30px;
+    width: 260px;
+    color: rgba(224, 220, 220, 0.856);
+    .img {
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      margin-right: 30px;
+      cursor: pointer;
     }
     .info {
       margin-left: 20px;
@@ -105,11 +114,10 @@ const { showSound } = toRefs(state)
       }
     }
   }
-
   .control {
+    margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: center;
     span {
       cursor: pointer;
       font-size: 24px;
@@ -117,12 +125,10 @@ const { showSound } = toRefs(state)
       margin: 0 10px;
     }
   }
-
   .sound {
     position: absolute;
     right: 30.2%;
     bottom: 115px;
-    height: 30px;
   }
 }
 </style>
